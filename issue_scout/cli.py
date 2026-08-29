@@ -22,6 +22,11 @@ def parser() -> argparse.ArgumentParser:
     )
     command.add_argument("keywords", nargs="*", help="optional search terms")
     command.add_argument("--label", action="append", help="label to require; repeat for multiple labels")
+    command.add_argument(
+        "--exclude-label",
+        action="append",
+        help="label to exclude; repeat for multiple labels",
+    )
     command.add_argument("--language", help="repository primary language")
     command.add_argument("--repo", help="limit to OWNER/REPOSITORY")
     command.add_argument("--org", help="limit to one organization")
@@ -67,6 +72,7 @@ def main(argv: list[str] | None = None) -> int:
         search_query = build_query(
             keywords=arguments.keywords,
             labels=arguments.label,
+            excluded_labels=arguments.exclude_label,
             language=arguments.language,
             repository=arguments.repo,
             organization=arguments.org,

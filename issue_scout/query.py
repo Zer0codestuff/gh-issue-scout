@@ -17,6 +17,7 @@ def build_query(
     *,
     keywords: list[str] | None = None,
     labels: list[str] | None = None,
+    excluded_labels: list[str] | None = None,
     language: str | None = None,
     repository: str | None = None,
     organization: str | None = None,
@@ -38,6 +39,8 @@ def build_query(
         parts.append("no:assignee")
     for label in labels or ["good first issue"]:
         parts.append(f"label:{quote_value(label)}")
+    for label in excluded_labels or []:
+        parts.append(f"-label:{quote_value(label)}")
     if language:
         parts.append(f"language:{quote_value(language)}")
     if repository:
