@@ -36,5 +36,14 @@ class QueryTests(TestCase):
         with self.assertRaisesRegex(ValueError, "cannot be used together"):
             build_query(repository="owner/repo", organization="owner")
 
+    def test_excluded_labels_are_repeatable_and_safely_quoted(self) -> None:
+        query = build_query(
+            labels=["help wanted"],
+            excluded_labels=["blocked", "needs info"],
+            now=datetime(2026, 8, 29, tzinfo=timezone.utc),
+        )
+
+        self.assertIn('label:"help wanted" -label:blocked -label:"needs info"', query)
+
     def test_quote_value_removes_embedded_quotes(self) -> None:
         self.assertEqual(quote_value('good "first" issue'), '"good first issue"')

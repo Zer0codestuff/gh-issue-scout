@@ -34,6 +34,7 @@ Focus the search:
 ```bash
 gh issue-scout parser --language Python --min-stars 500
 gh issue-scout --org home-assistant --label "help wanted"
+gh issue-scout --label "good first issue" --exclude-label blocked
 gh issue-scout --repo rust-lang/rust --label E-easy --max-age 30
 ```
 
@@ -48,6 +49,7 @@ Useful controls:
 
 ```text
 --claim-window DAYS   Treat recent claim comments as active for this long
+--exclude-label LABEL Exclude a label; repeat for multiple labels
 --include-claimed     Show claimed candidates and their evidence
 --include-assigned    Include assigned issues in the GitHub search
 --max-repo-idle DAYS  Exclude repositories without a recent push
