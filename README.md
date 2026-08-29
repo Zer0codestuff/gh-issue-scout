@@ -35,7 +35,7 @@ Focus the search:
 gh issue-scout parser --language Python --min-stars 500
 gh issue-scout --org home-assistant --label "help wanted"
 gh issue-scout --label "good first issue" --exclude-label blocked
-gh issue-scout --repo rust-lang/rust --label E-easy --max-age 30
+gh issue-scout --repo rust-lang/rust --label E-easy --max-age 30 --updated-within 7
 ```
 
 Generate output for another tool:
@@ -53,6 +53,7 @@ Useful controls:
 --include-claimed     Show claimed candidates and their evidence
 --include-assigned    Include assigned issues in the GitHub search
 --max-repo-idle DAYS  Exclude repositories without a recent push
+--updated-within DAYS Require recent activity on the issue itself
 --query QUALIFIERS    Append raw GitHub search qualifiers
 --show-query          Print the exact generated search query
 --open                Open the top result in a browser

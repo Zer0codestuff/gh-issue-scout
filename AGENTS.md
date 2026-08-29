@@ -22,6 +22,7 @@ Version 0.1.0 is publicly released. Remote installation through GitHub CLI and l
 - Added deterministic scoring based on freshness, repository activity, stars, discussion size, labels, reactions, and maintainer participation.
 - Added recent claim detection for assignments and common claim phrases.
 - Added a repeatable excluded-label search filter for removing blocked or noisy workflows.
+- Added an optional issue-activity cutoff through `--updated-within`.
 - Added tests, cross-platform CI, security notes, and contributor documentation.
 - Published the repository and v0.1.0 release with GitHub CLI extension discovery metadata.
 

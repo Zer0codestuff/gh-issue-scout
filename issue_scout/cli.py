@@ -34,6 +34,11 @@ def parser() -> argparse.ArgumentParser:
     command.add_argument("--min-stars", type=int, default=50, help="minimum repository stars (default: 50)")
     command.add_argument("--max-age", type=int, default=90, help="maximum issue age in days (default: 90)")
     command.add_argument(
+        "--updated-within",
+        type=int,
+        help="require issue activity within this many days",
+    )
+    command.add_argument(
         "--max-repo-idle",
         type=int,
         default=365,
@@ -77,6 +82,7 @@ def main(argv: list[str] | None = None) -> int:
             repository=arguments.repo,
             organization=arguments.org,
             max_age_days=arguments.max_age,
+            updated_within_days=arguments.updated_within,
             include_assigned=arguments.include_assigned,
             extra_query=arguments.query,
         )
