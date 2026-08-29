@@ -45,5 +45,17 @@ class QueryTests(TestCase):
 
         self.assertIn('label:"help wanted" -label:blocked -label:"needs info"', query)
 
+    def test_updated_within_adds_activity_cutoff(self) -> None:
+        query = build_query(
+            updated_within_days=7,
+            now=datetime(2026, 8, 29, tzinfo=timezone.utc),
+        )
+
+        self.assertIn("created:>=2026-05-31 updated:>=2026-08-22", query)
+
+    def test_updated_within_rejects_non_positive_days(self) -> None:
+        with self.assertRaisesRegex(ValueError, "--updated-within must be at least 1 day"):
+            build_query(updated_within_days=0)
+
     def test_quote_value_removes_embedded_quotes(self) -> None:
         self.assertEqual(quote_value('good "first" issue'), '"good first issue"')

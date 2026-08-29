@@ -22,6 +22,7 @@ def build_query(
     repository: str | None = None,
     organization: str | None = None,
     max_age_days: int = 90,
+    updated_within_days: int | None = None,
     include_assigned: bool = False,
     extra_query: str | None = None,
     now: datetime | None = None,
@@ -31,6 +32,8 @@ def build_query(
         raise ValueError("--repo and --org cannot be used together")
     if max_age_days < 1:
         raise ValueError("--max-age must be at least 1 day")
+    if updated_within_days is not None and updated_within_days < 1:
+        raise ValueError("--updated-within must be at least 1 day")
 
     current = now or datetime.now(timezone.utc)
     created_after = (current - timedelta(days=max_age_days)).date().isoformat()
@@ -48,6 +51,9 @@ def build_query(
     if organization:
         parts.append(f"org:{quote_value(organization)}")
     parts.append(f"created:>={created_after}")
+    if updated_within_days is not None:
+        updated_after = (current - timedelta(days=updated_within_days)).date().isoformat()
+        parts.append(f"updated:>={updated_after}")
     if keywords:
         parts.extend(keyword.strip() for keyword in keywords if keyword.strip())
     if extra_query:
