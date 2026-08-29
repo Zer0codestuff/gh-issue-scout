@@ -15,13 +15,14 @@ There is no build step and no third-party Python dependency.
 
 ## Current status
 
-Version 0.1.0 is ready for its first public release. Core search, ranking, claim detection, terminal output, Markdown output, JSON output, and browser opening are implemented.
+Version 0.1.0 is publicly released. Remote installation through GitHub CLI and live GraphQL searches are verified. Core search, ranking, claim detection, terminal output, Markdown output, JSON output, and browser opening are implemented.
 
 ## Recent changes
 
 - Added deterministic scoring based on freshness, repository activity, stars, discussion size, labels, reactions, and maintainer participation.
 - Added recent claim detection for assignments and common claim phrases.
 - Added tests, cross-platform CI, security notes, and contributor documentation.
+- Published the repository and v0.1.0 release with GitHub CLI extension discovery metadata.
 
 ## Project constraints
 
